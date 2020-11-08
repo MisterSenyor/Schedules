@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+{% block head %}
+<head>
+    <meta charset="UTF-8">
+    <title>home page</title>
+    <link rel="stylesheet" href="{% static 'schedules/styling.css' %}"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Static Example</title>
+  
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+    <!-- XDSoft DateTimePicker -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>
+</head>
+{% endblock %}
+<body>
+    <nav>
+        <ul>
+            <li><a href="http://127.0.0.1:8000/">HOME</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="http://127.0.0.1:8000/mainProfile/">MY PROFILE</a></li>
+            <li><a href="http://127.0.0.1:8000/tasks/">TASKS</a></li>
+            {% else %}
+            <li><a href="http://127.0.0.1:8000/mainProfile/">SIGN UP</a></li>
+            {% endif %}
+            <li><a href="#">DISCUSSIONS</a></li>
+            <li><a href="http://127.0.0.1:8000/yourSchool">YOUR SCHOOL</a></li>
+            {% if not user.is_authenticated %}
+            <li><a href="http://127.0.0.1:8000/login">LOG IN</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+{% block body %}
+    <h1>HOME PAGE</h1>
+    <div class="content2" style="font-size: 40px; text-align: center;">
+        Here are your most urgent things:
+    </div>
+{% endblock %}
+    <div class="content1"> {# style="background-image: url('{% static "schedules/pic.jpg" %}')" #}
+        {% block form1 %}
+        <div class="formCont">
+        <form action="">
+            <select id="menuTaskNum" name="menuTaskNum" >
+                {% for i in range3_10 %}
+                    {% if i == lim|add:"-1" %}
+                        <option selected="selected" value="{{ i }}">{{ i }}</option>
+                    {% else %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        <input type="submit" value="reload">
+        </form>
+        </div>
+    {% endblock %}
+        <ul class="tasksList">
+        {% for item in tasks %}
+            {% if forloop.counter < lim %}
+                {% with itemClass=item.schedule_class.all|first %}
+            <li>{{ item.task }} - {{ item.date }} ({{ itemClass.name }})</li>
+                {% endwith %}
+            {%  endif %}
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="content2" style="font-size: 40px; text-align: center;">
+        Add a new task:
+    </div>
+    <div class="content1" {#style="background-image: url('{% static "schedules/pic.jpg" %}')"#}>
+        {% block form2 %}
+        <div class="formCont">
+        <form method="post" action="">
+            {% csrf_token %}
+            <label>Pick a class:</label>
+            <select id="schedClass" name="schedClass" >
+                        <option disabled="disabled" selected="selected" value="disabled_option">Select one</option>
+                {% for i in classes %}
+                    <option value="{{ i.id }}">{{ i.name }}</option>
+                {% endfor %}
+            </select>
+            </select>
+            {{ form }}
+            <script>
+                $(function () {
+                  $("#id_date").datetimepicker({
+                    format: 'd/m/Y',
+                  });
+                });
+              </script>
+            <label>(optional) Amount of lessons till the deadline:</label>
+            <select id="numTillClass" name="numTillClass" >
+                <option disabled="disabled" selected="selected" value="disabled_option">Select one</option>
+                {% for j in range1_10 %}
+                <option value="{{j}}">{{j}}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="reload">
+        </form>
+        </div>
+        {% endblock %}
+    </div>
+    <div id="footer">
+        <ul>
+            <li>Test</li>
+            <li>Test</li>
+            <li>Test</li>
+        </ul>
+        <ul>
+            <li>Test</li>
+            <li>Test</li>
+            <li>Test</li>
+        </ul>
+        <ul>
+            <li>Test</li>
+            <li>Test</li>
+            <li>Test</li>
+        </ul>
+    </div>
+</body>
+</html>

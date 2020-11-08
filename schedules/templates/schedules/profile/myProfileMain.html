@@ -1,0 +1,17 @@
+{% extends 'schedules/home.html' %}
+{% load static %}
+
+{% block head %}
+<head>
+    <meta charset="UTF-8">
+    <title>My Account</title>
+    <link rel="stylesheet" href="{% static 'schedules/styling.css' %}"/>
+</head>
+{% endblock %}
+{% block body %}
+    <h1>{{ user }}</h1>
+    <a href="http://127.0.0.1:8000/logout">Log out</a>
+{% endblock %}
+{% block form1 %}
+    <h1>Your profile!</h1>
+{% endblock %}

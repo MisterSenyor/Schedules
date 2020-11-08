@@ -1,0 +1,36 @@
+{% extends 'schedules/home.html' %}
+{% load static %}
+{% load schedule_extras %}
+
+<!DOCTYPE html>
+<html lang="en">
+{% block head %}
+<head>
+    <meta charset="UTF-8">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="{% static 'schedules/styling.css' %}"/>
+</head>
+{% endblock %}
+<body>
+    {% block body %}
+        <h1>Tasks</h1>
+    {% endblock %}
+    {% block form1 %}
+        <form>
+            <select id="fieldSelect" name="fieldSelect">
+            {% for i in fields %}
+                <option value="{{ i.name }}">{{ i.name }}</option>
+            {% endfor %}
+            </select>
+        <input type="submit" value="sort">
+        </form>
+    {% for item in tasks|order_by:field %}
+            {% with itemClass=item.schedule_class.all|first %}
+        <li>{{ item.task }} - {{ item.date }} ({{ itemClass.name }})</li>
+            {% endwith %}
+    {% endfor %}
+    {% endblock %}
+    {% block form2 %}
+    {% endblock %}
+</body>
+</html>

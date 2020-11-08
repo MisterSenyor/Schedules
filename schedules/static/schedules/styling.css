@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    /*padding: 0;*/
+  }
+body {
+    background: linear-gradient(#ece7e6, #eee7e7);
+    color: #0a1612;
+}
+h1 {
+    font-size: 56px;
+    font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+    text-align: center;
+}
+@keyframes nav_ani {
+    from {background: linear-gradient(90deg,
+    rgba(119, 201, 212, 0.2) 0%,
+    rgba(119, 201, 212, 0.3) 25%,
+    rgba(119, 201, 212, 0.3) 75%,
+    rgba(119, 201, 212, 0.2) 100%);}
+    to {background: #77c9d4;}
+}
+nav {
+    padding: 50px 0;
+    min-width: 500px;
+}
+nav ul {
+    background: linear-gradient(90deg,
+    rgba(119, 201, 212, 0.2) 0%,
+    rgba(119, 201, 212, 0.3) 25%,
+    rgba(119, 201, 212, 0.3) 75%,
+    rgba(119, 201, 212, 0.2) 100%);
+    /*box-shadow: 0 0 25px rgba(0, 0, 0, 0.3),*/
+    /*inset 0 0 1px rgba(255, 255, 255, 0.6);*/
+}
+nav ul li {
+    display: inline-block;
+}
+nav ul li:hover {
+    animation-name: nav_ani;
+    animation-duration: 0.5s;
+    background: #77c9d4;
+}
+nav  ul li a {
+    padding: 10px;
+    font-size: 18px;
+    color: #0a1612;
+    font-family: Arial;
+    text-decoration: none;
+    display:block;
+}
+.parallax {
+    border: 0%;
+    padding: 0%;
+    margin: 0%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 500px;
+    width: 100%;
+}
+.content1 {
+    /*border: 0%;*/
+    position: relative;
+    padding: 0%;
+    margin: 0%;
+    height: 500px;
+    width: 100%;
+    text-align: center;
+    /*background: linear-gradient(#57bc90, #77c9d4);*/
+    background-color: #57bc90;
+}
+
+.tasksList {
+    font-size: 20px;
+    font-family: cursive;
+    list-style-type:none;
+    margin: 0;
+}
+
+.formCont {
+    position:absolute;
+    right:0;
+    top:0;
+    padding-top: 10px;
+    padding-right: 35px;
+}
+
+.content2 {
+    min-height: 100px;
+    background-color: #ece7e6;
+}
+#footer {
+    min-height: 250px;
+    background-color: #5e7c6f;
+    /* outline: 5px fill black; f2e9e9*/
+    /* text-align: center; */
+}
+#footer ul {
+    display: inline-block;
+}
+#footer ul li {
+    padding: 20px 50px;
+    list-style-type: none;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #FFFFFF;
+}
+#footer ul::before {
+    padding-top: 20px;
+}

@@ -1,0 +1,33 @@
+{% extends 'schedules/home.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+{% block head %}
+<head>
+    <meta charset="UTF-8">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="{% static 'schedules/styling.css' %}"/>
+</head>
+{% endblock %}
+<body>
+    {% block body %}
+        <h1>Sign up today!</h1>
+    {% endblock %}
+    {% block form1 %}
+        <form method="post" action="">
+            {% csrf_token %}
+            <select id="homeroomClass" name="homeroomClass">
+                {% for class in homeroomClasses %}
+                    <option value="{{ class }}">{{ class }}</option>
+                {% endfor %}
+            </select>
+            {{ form }}
+            <input type="submit">
+        </form>
+    {% endblock %}
+    {% block form2 %}
+
+    {% endblock %}
+</body>
+</html>

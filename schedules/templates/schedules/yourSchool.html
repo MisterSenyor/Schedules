@@ -1,0 +1,29 @@
+{% extends 'schedules/home.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+{% block head %}
+<head>
+    <meta charset="UTF-8">
+    <title>home page</title>
+    <link rel="stylesheet" href="{% static 'schedules/styling.css' %}"/>
+</head>
+{% endblock %}
+<body>
+    {% block body %}
+        <h1>Your school!</h1>
+
+    {% endblock %}
+    {% block form1 %}
+            <form action="">
+            <select id="schoolCreation" name="schoolCreation" >
+                {% for i in schools %}
+                        <option value="{{ i }}">{{ i }}</option>
+                {% endfor %}
+                <option value="create new school" selected="selected">--create new school--</option>
+            </select>
+        <input type="submit" value="school">
+        </form>
+    {% endblock %}
+</body>
+</html>
